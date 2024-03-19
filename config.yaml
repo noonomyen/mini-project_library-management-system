@@ -1,0 +1,7 @@
+REMOTE:
+    HOST: "127.0.0.1"
+    PORT: 3306
+    DATABASE: "LMS_DB"
+USER:
+    USERNAME: "lms-admin"
+    PASSWORD: "pass"

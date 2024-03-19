@@ -49,6 +49,7 @@ class BorrowRecordEdit_UI(QWidget):
         self.lineEditUserID.returnPressed.connect(lambda: self.lineEditBookID.setFocus())
 
         self.LoadEditData(old_data)
+        self.checkbox_toggled()
         self.show()
 
     def pushButtonSaveClicked(self) -> None:

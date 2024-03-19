@@ -898,6 +898,7 @@ class MainWindow_UI(QMainWindow):
         if reply == QMessageBox.StandardButton.Yes:
             self.BookEditForm_Clear()
             self.UserEditForm_Clear()
+            self.BorrowRecordForm_Clear()
             Session.close()
             self.hide()
             self.LoginForm.open()

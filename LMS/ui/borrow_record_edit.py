@@ -16,7 +16,7 @@ class BorrowRecordEdit_UI(QWidget):
     dateTimeEditBorrowed: QDateTimeEdit
     dateTimeEditReturned: QDateTimeEdit
     checkBoxReturned: QCheckBox
-    checkBoxUseCurrentTime: QCheckBox
+    pushButtonCurrentTime: QPushButton
     pushButtonSave: QPushButton
     pushButtonRemove: QPushButton
 
@@ -44,12 +44,12 @@ class BorrowRecordEdit_UI(QWidget):
         self.lineEditBookID.setValidator(QIntValidator())
         self.pushButtonSave.clicked.connect(self.pushButtonSaveClicked)
         self.pushButtonRemove.clicked.connect(self.pushButtonRemoveClicked)
-        self.checkBoxUseCurrentTime.clicked.connect(self.checkbox_toggled)
-        self.checkBoxReturned.clicked.connect(self.checkbox_toggled)
+        self.pushButtonCurrentTime.clicked.connect(lambda: self.dateTimeEditReturned.setDateTime(datetime.now()))
+        self.checkBoxReturned.stateChanged.connect(lambda: self.dateTimeEditReturned.setEnabled(self.checkBoxReturned.isChecked()))
         self.lineEditUserID.returnPressed.connect(lambda: self.lineEditBookID.setFocus())
 
         self.LoadEditData(old_data)
-        self.checkbox_toggled()
+        self.dateTimeEditReturned.setEnabled(self.checkBoxReturned.isChecked())
         self.show()
 
     def pushButtonSaveClicked(self) -> None:
@@ -79,16 +79,6 @@ class BorrowRecordEdit_UI(QWidget):
         else:
             QMessageBox.critical(self, "Runtime Error", "No callback function !")
 
-    def checkbox_toggled(self):
-        CurrentTimeChecked = self.checkBoxUseCurrentTime.isChecked()
-        ReturnedChecked = self.checkBoxReturned.isChecked()
-
-        if ReturnedChecked:
-            self.dateTimeEditReturned.setEnabled(not CurrentTimeChecked)
-            self.dateTimeEditReturned.setDateTime(datetime.now())
-        else:
-            self.dateTimeEditReturned.setEnabled(False)
-
     def LoadEditData(self, instance: BookBorrowHistoryData) -> None:
         self.lineEditUserID.setText(str(instance.userId))
         self.lineEditBookID.setText(str(instance.bookId))
@@ -98,7 +88,6 @@ class BorrowRecordEdit_UI(QWidget):
             self.dateTimeEditReturned.setDateTime(instance.returned)
 
         self.checkBoxReturned.setChecked(instance.returned is not None)
-        self.checkBoxUseCurrentTime.setChecked(False)
 
     def DumpEditData(self) -> BookBorrowHistoryData:
         userId = self.lineEditUserID.text().strip()

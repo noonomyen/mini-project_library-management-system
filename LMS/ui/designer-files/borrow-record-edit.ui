@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>344</width>
-    <height>203</height>
+    <width>332</width>
+    <height>221</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -124,7 +124,7 @@
     <rect>
      <x>110</x>
      <y>70</y>
-     <width>221</width>
+     <width>211</width>
      <height>22</height>
     </rect>
    </property>
@@ -134,32 +134,16 @@
     <rect>
      <x>110</x>
      <y>100</y>
-     <width>221</width>
+     <width>211</width>
      <height>22</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="checkBoxUseCurrentTime">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>130</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font-size: 15px;</string>
-   </property>
-   <property name="text">
-    <string>Use current time</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonSave">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>160</y>
+     <x>170</x>
+     <y>180</y>
      <width>151</width>
      <height>31</height>
     </rect>
@@ -171,7 +155,7 @@
   <widget class="QCheckBox" name="checkBoxReturned">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>70</x>
      <y>130</y>
      <width>91</width>
      <height>21</height>
@@ -187,14 +171,27 @@
   <widget class="QPushButton" name="pushButtonRemove">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>160</y>
+     <x>10</x>
+     <y>180</y>
      <width>151</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Remove</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonCurrentTime">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>130</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current time</string>
    </property>
   </widget>
  </widget>
@@ -204,7 +201,6 @@
   <tabstop>dateTimeEditBorrowed</tabstop>
   <tabstop>dateTimeEditReturned</tabstop>
   <tabstop>checkBoxReturned</tabstop>
-  <tabstop>checkBoxUseCurrentTime</tabstop>
   <tabstop>pushButtonSave</tabstop>
   <tabstop>pushButtonRemove</tabstop>
  </tabstops>

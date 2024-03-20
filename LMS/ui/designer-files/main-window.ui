@@ -585,13 +585,13 @@
                  <property name="minimumSize">
                   <size>
                    <width>180</width>
-                   <height>180</height>
+                   <height>240</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
                    <width>180</width>
-                   <height>180</height>
+                   <height>240</height>
                   </size>
                  </property>
                  <property name="text">
@@ -607,26 +607,6 @@
                </item>
                <item>
                 <layout class="QGridLayout" name="gridLayout_5">
-                 <item row="1" column="1">
-                  <widget class="QLabel" name="labelB_BookTitle">
-                   <property name="styleSheet">
-                    <string notr="true">font-size: 15px;</string>
-                   </property>
-                   <property name="text">
-                    <string>{STR}</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_30">
-                   <property name="styleSheet">
-                    <string notr="true">font-size: 15px; font-weight: 600</string>
-                   </property>
-                   <property name="text">
-                    <string>User ID : </string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="4" column="1">
                   <widget class="QPushButton" name="pushButtonB_Borrow">
                    <property name="minimumSize">
@@ -646,16 +626,6 @@
                    </property>
                    <property name="text">
                     <string>Borrow</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLabel" name="labelB_UserName">
-                   <property name="styleSheet">
-                    <string notr="true">font-size: 15px;</string>
-                   </property>
-                   <property name="text">
-                    <string>{STR}</string>
                    </property>
                   </widget>
                  </item>
@@ -679,13 +649,23 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_26">
+                 <item row="1" column="1">
+                  <widget class="QLabel" name="labelB_BookTitle">
                    <property name="styleSheet">
-                    <string notr="true">font-size: 15px; font-weight: 600;</string>
+                    <string notr="true">font-size: 15px;</string>
                    </property>
                    <property name="text">
-                    <string>Book ID : </string>
+                    <string>{STR}</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_30">
+                   <property name="styleSheet">
+                    <string notr="true">font-size: 15px; font-weight: 600</string>
+                   </property>
+                   <property name="text">
+                    <string>User ID : </string>
                    </property>
                   </widget>
                  </item>
@@ -699,6 +679,16 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="3" column="1">
+                  <widget class="QLabel" name="labelB_UserName">
+                   <property name="styleSheet">
+                    <string notr="true">font-size: 15px;</string>
+                   </property>
+                   <property name="text">
+                    <string>{STR}</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_32">
                    <property name="styleSheet">
@@ -706,6 +696,16 @@
                    </property>
                    <property name="text">
                     <string>User Name : </string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_26">
+                   <property name="styleSheet">
+                    <string notr="true">font-size: 15px; font-weight: 600;</string>
+                   </property>
+                   <property name="text">
+                    <string>Book ID : </string>
                    </property>
                   </widget>
                  </item>
@@ -845,13 +845,13 @@
                <property name="minimumSize">
                 <size>
                  <width>180</width>
-                 <height>180</height>
+                 <height>240</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
                  <width>180</width>
-                 <height>180</height>
+                 <height>240</height>
                 </size>
                </property>
                <property name="text">
@@ -1273,13 +1273,13 @@
                    <property name="minimumSize">
                     <size>
                      <width>180</width>
-                     <height>180</height>
+                     <height>240</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
                      <width>180</width>
-                     <height>180</height>
+                     <height>240</height>
                     </size>
                    </property>
                    <property name="text">
@@ -1571,7 +1571,7 @@
                        <property name="maximumSize">
                         <size>
                          <width>16777215</width>
-                         <height>160</height>
+                         <height>16777215</height>
                         </size>
                        </property>
                        <property name="styleSheet">
@@ -1717,12 +1717,12 @@
                    <enum>Qt::Vertical</enum>
                   </property>
                   <property name="sizeType">
-                   <enum>QSizePolicy::Ignored</enum>
+                   <enum>QSizePolicy::Maximum</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
                     <width>20</width>
-                    <height>40</height>
+                    <height>100</height>
                    </size>
                   </property>
                  </spacer>

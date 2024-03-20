@@ -1,4 +1,5 @@
 from typing import Callable
+from itertools import cycle
 
 from .errors import ISBNValueError
 
@@ -65,7 +66,12 @@ class ISBN13(ISBN):
 
     def calc_check_digit(self) -> str:
         sum = 0
-        for idx, digit in enumerate(self.digits):
-            sum += (3 if idx & 1 == 1 else 1) * (ord(digit) - 48)
+        for mul, digit in zip(cycle((1, 3)), self.digits):
+            sum += mul * (ord(digit) - 48)
 
-        return chr((10 - (sum % 10)) + 48)
+        r = (10 - sum) % 10
+
+        if r == 10:
+            return "0"
+        else:
+            return chr(r + 48)

@@ -261,6 +261,8 @@ class MainWindow_UI(QMainWindow):
         self.show()
         self.DashboardUpdate()
         self.BookManagement_listBook()
+        if len(self.bookList) > 0:
+            self.BookManagement_SelectRow(0)
         self.UserManagement_listUser()
         self.BorrowingManagement_listBorrowHistory()
 

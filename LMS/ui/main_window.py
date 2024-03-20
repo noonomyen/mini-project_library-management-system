@@ -1,4 +1,4 @@
-from typing import Callable, Optional, Union
+from typing import Callable, Optional, Union, Any
 from datetime import datetime
 
 from PyQt6.QtCore import Qt, QEvent
@@ -14,6 +14,7 @@ from ..db_session import Session
 from ..ui import Login_UI, BookEdit_UI, UserEdit_UI, BorrowRecordEdit_UI
 from ..lms_types import BookData, UserData, BookBorrowHistoryData, BookReturnReviewData, BookBorrowReviewData
 from ..utils import exclude_range
+from ..isbn import ISBN10, ISBN13
 
 class MainWindow_UI(QMainWindow):
     LoginForm: Login_UI
@@ -523,25 +524,17 @@ class MainWindow_UI(QMainWindow):
         self.tableWidgetBWMGMT.setRowCount(len(data))
 
         if data:
-            def toItem(text: Union[str, int, datetime], center: bool = False, color: Optional[Qt.GlobalColor] = None) -> QTableWidgetItem:
-                item = QTableWidgetItem(str(text))
-                if center:
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                if color is not None:
-                    item.setForeground(color)
-                return item
-
             for row, record in enumerate(data):
                 self.listBorrowingHistory.append(record)
                 color = Qt.GlobalColor.green if record.returned else Qt.GlobalColor.red
-                self.tableWidgetBWMGMT.setItem(row, 0, toItem(record.historyId, center=True))
-                self.tableWidgetBWMGMT.setItem(row, 1, toItem(record.userId, center=True))
-                self.tableWidgetBWMGMT.setItem(row, 2, toItem(record.userName))
-                self.tableWidgetBWMGMT.setItem(row, 3, toItem(record.bookId, center=True))
-                self.tableWidgetBWMGMT.setItem(row, 4, toItem(record.bookTitle))
-                self.tableWidgetBWMGMT.setItem(row, 5, toItem(record.borrowed, center=True))
-                self.tableWidgetBWMGMT.setItem(row, 6, toItem((record.returned if record.returned else "-"), center=True))
-                self.tableWidgetBWMGMT.setItem(row, 7, toItem(("Returned" if record.returned else "Borrowing"), center=True, color=color))
+                self.tableWidgetBWMGMT.setItem(row, 0, self.toTableWidgetItem(record.historyId, center=True))
+                self.tableWidgetBWMGMT.setItem(row, 1, self.toTableWidgetItem(record.userId, center=True))
+                self.tableWidgetBWMGMT.setItem(row, 2, self.toTableWidgetItem(record.userName))
+                self.tableWidgetBWMGMT.setItem(row, 3, self.toTableWidgetItem(record.bookId, center=True))
+                self.tableWidgetBWMGMT.setItem(row, 4, self.toTableWidgetItem(record.bookTitle))
+                self.tableWidgetBWMGMT.setItem(row, 5, self.toTableWidgetItem(record.borrowed, center=True))
+                self.tableWidgetBWMGMT.setItem(row, 6, self.toTableWidgetItem((record.returned if record.returned else "-"), center=True))
+                self.tableWidgetBWMGMT.setItem(row, 7, self.toTableWidgetItem(("Returned" if record.returned else "Borrowing"), center=True, color=color))
         else:
             self.currentSelectRecord = None
             self.currentSelectRecordHistoryId = None
@@ -667,20 +660,14 @@ class MainWindow_UI(QMainWindow):
         self.tableWidgetBMGMT.setRowCount(len(data))
 
         if data:
-            def toItem(text: Optional[Union[str, int]], center: bool = False) -> QTableWidgetItem:
-                item = QTableWidgetItem(str(text if text is not None else ""))
-                if center:
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                return item
-
             for row, book in enumerate(data):
                 self.bookList.append(book)
-                self.tableWidgetBMGMT.setItem(row, 0, toItem(book.bookId, center=True))
-                self.tableWidgetBMGMT.setItem(row, 1, toItem(book.title))
-                self.tableWidgetBMGMT.setItem(row, 2, toItem(book.author))
-                self.tableWidgetBMGMT.setItem(row, 3, toItem(book.publication))
-                self.tableWidgetBMGMT.setItem(row, 4, toItem(book.isbn10))
-                self.tableWidgetBMGMT.setItem(row, 5, toItem(book.isbn13))
+                self.tableWidgetBMGMT.setItem(row, 0, self.toTableWidgetItem(book.bookId, center=True))
+                self.tableWidgetBMGMT.setItem(row, 1, self.toTableWidgetItem(book.title))
+                self.tableWidgetBMGMT.setItem(row, 2, self.toTableWidgetItem(book.author))
+                self.tableWidgetBMGMT.setItem(row, 3, self.toTableWidgetItem(book.publication))
+                self.tableWidgetBMGMT.setItem(row, 4, self.toTableWidgetItem(book.isbn10))
+                self.tableWidgetBMGMT.setItem(row, 5, self.toTableWidgetItem(book.isbn13))
         else:
             self.currentSelectBook = None
             self.currentSelectBookId = None
@@ -857,20 +844,14 @@ class MainWindow_UI(QMainWindow):
         self.tableWidgetUMGMT.setRowCount(len(data))
 
         if data:
-            def toItem(text: Optional[Union[str, int]], center: bool = False) -> QTableWidgetItem:
-                item = QTableWidgetItem(str(text if text is not None else ""))
-                if center:
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                return item
-
             for row, user in enumerate(data):
                 self.userList.append(user)
-                self.tableWidgetUMGMT.setItem(row, 0, toItem(user.userId, center=True))
-                self.tableWidgetUMGMT.setItem(row, 1, toItem((user.prefixName + "." if user.prefixName else "") + user.firstName))
-                self.tableWidgetUMGMT.setItem(row, 2, toItem(user.lastName))
-                self.tableWidgetUMGMT.setItem(row, 3, toItem(user.email if user.email else ""))
-                self.tableWidgetUMGMT.setItem(row, 4, toItem(user.phone if user.phone else ""))
-                self.tableWidgetUMGMT.setItem(row, 5, toItem(user.address if user.address else ""))
+                self.tableWidgetUMGMT.setItem(row, 0, self.toTableWidgetItem(user.userId, center=True))
+                self.tableWidgetUMGMT.setItem(row, 1, self.toTableWidgetItem((user.prefixName + "." if user.prefixName else "") + user.firstName))
+                self.tableWidgetUMGMT.setItem(row, 2, self.toTableWidgetItem(user.lastName))
+                self.tableWidgetUMGMT.setItem(row, 3, self.toTableWidgetItem(user.email if user.email else ""))
+                self.tableWidgetUMGMT.setItem(row, 4, self.toTableWidgetItem(user.phone if user.phone else ""))
+                self.tableWidgetUMGMT.setItem(row, 5, self.toTableWidgetItem(user.address if user.address else ""))
         else:
             self.currentSelectUser = None
             self.currentSelectUserId = None
@@ -902,3 +883,14 @@ class MainWindow_UI(QMainWindow):
             Session.close()
             self.hide()
             self.LoginForm.open()
+
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def toTableWidgetItem(text: Any, center: bool = False, color: Optional[Qt.GlobalColor] = None) -> QTableWidgetItem:
+        item = QTableWidgetItem(str(text if text is not None else ""))
+        if center:
+            item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+        if color:
+            item.setForeground(color)
+        return item

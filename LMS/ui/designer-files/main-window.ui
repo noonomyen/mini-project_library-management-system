@@ -291,13 +291,39 @@
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_8">
+              <item row="0" column="8">
+               <widget class="QLabel" name="labelD_Datetime">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 35px; font-weight: 600;</string>
+                </property>
+                <property name="text">
+                 <string>{DATETIME}</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="9">
+               <spacer name="horizontalSpacer_24">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_7">
                 <property name="styleSheet">
                  <string notr="true">font-size: 25px; font-weight: 600;</string>
                 </property>
                 <property name="text">
-                 <string>User : </string>
+                 <string>Books : </string>
                 </property>
                </widget>
               </item>
@@ -327,32 +353,6 @@
                 </property>
                </spacer>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_7">
-                <property name="styleSheet">
-                 <string notr="true">font-size: 25px; font-weight: 600;</string>
-                </property>
-                <property name="text">
-                 <string>Book : </string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="4">
-               <spacer name="horizontalSpacer_7">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
               <item row="0" column="5">
                <widget class="QLabel" name="label_5">
                 <property name="styleSheet">
@@ -360,6 +360,22 @@
                 </property>
                 <property name="text">
                  <string>Borrowing : </string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="6">
+               <widget class="QLabel" name="labelD_BorrowingCount">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-size: 25px; font-weight: 600;</string>
+                </property>
+                <property name="text">
+                 <string>{NUM}</string>
                 </property>
                </widget>
               </item>
@@ -376,6 +392,16 @@
                 </property>
                 <property name="text">
                  <string>{NUM}</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 25px; font-weight: 600;</string>
+                </property>
+                <property name="text">
+                 <string>Users : </string>
                 </property>
                </widget>
               </item>
@@ -405,36 +431,36 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="6">
-               <widget class="QLabel" name="labelD_BorrowingCount">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+              <item row="1" column="4">
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="styleSheet">
-                 <string notr="true">font-size: 25px; font-weight: 600;</string>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
                 </property>
-                <property name="text">
-                 <string>{NUM}</string>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
                 </property>
-               </widget>
+               </spacer>
+              </item>
+              <item row="0" column="7">
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </item>

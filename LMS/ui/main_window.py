@@ -1,6 +1,7 @@
 from typing import Callable, Optional, Any
+from datetime import datetime
 
-from PyQt6.QtCore import Qt, QEvent
+from PyQt6.QtCore import Qt, QEvent, QTimer
 from PyQt6.QtWidgets import (
     QLabel, QAbstractItemView, QRadioButton, QInputDialog, QGroupBox, QHeaderView, QStackedWidget,
     QMessageBox, QStatusBar, QMenuBar, QMainWindow, QPushButton, QTableWidget, QLineEdit, QTableWidgetItem, QWidget
@@ -30,6 +31,8 @@ class MainWindow_UI(QMainWindow):
     labelD_UserCount: QLabel
     labelD_BorrowingCount: QLabel
     labelD_AllTimeBorrowedCount: QLabel
+    labelD_Datetime: QLabel
+    DatetimeTimer: QTimer
 
     Borrowing: QWidget
     defaultBorrowingBookImage: QPixmap
@@ -251,6 +254,11 @@ class MainWindow_UI(QMainWindow):
         self.currentSelectRecord = None
         self.currentSelectRecordHistoryId = None
         self.listBorrowingHistory = []
+
+        self.DatetimeTimer = QTimer()
+        self.DatetimeTimer.timeout.connect(lambda: self.labelD_Datetime.setText(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        self.DatetimeTimer.setInterval(500)
+        self.DatetimeTimer.start()
 
         self.closeEventOld = self.closeEvent
         self.closeEvent = self.HookCloseEvent # type: ignore

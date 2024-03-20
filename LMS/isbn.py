@@ -69,9 +69,4 @@ class ISBN13(ISBN):
         for mul, digit in zip(cycle((1, 3)), self.digits):
             sum += mul * (ord(digit) - 48)
 
-        r = (10 - sum) % 10
-
-        if r == 10:
-            return "0"
-        else:
-            return chr(r + 48)
+        return chr(((10 - sum) % 10) + 48)

@@ -1,5 +1,4 @@
-from typing import Callable, Optional, Union, Any
-from datetime import datetime
+from typing import Callable, Optional, Any
 
 from PyQt6.QtCore import Qt, QEvent
 from PyQt6.QtWidgets import (
@@ -14,7 +13,6 @@ from ..db_session import Session
 from ..ui import Login_UI, BookEdit_UI, UserEdit_UI, BorrowRecordEdit_UI
 from ..lms_types import BookData, UserData, BookBorrowHistoryData, BookReturnReviewData, BookBorrowReviewData
 from ..utils import exclude_range
-from ..isbn import ISBN10, ISBN13
 
 class MainWindow_UI(QMainWindow):
     LoginForm: Login_UI

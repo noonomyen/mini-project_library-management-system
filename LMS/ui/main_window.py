@@ -455,20 +455,10 @@ class MainWindow_UI(QMainWindow):
 
     def BorrowingManagement_edit(self, action: BorrowRecordEdit_UI.BorrowRecordEditAction, data: Optional[BookBorrowHistoryData], old_data: Optional[BookBorrowHistoryData]) -> bool:
         if action == BorrowRecordEdit_UI.BorrowRecordEditAction.SAVE and data is not None and old_data is not None:
-            result = Session.updateBorrowHistory(data, old_data)
-
-            check = (
-                data.historyId == old_data.historyId,
-                data.bookId == old_data.bookId,
-                data.bookTitle == old_data.bookTitle,
-                data.userId == old_data.userId,
-                data.userName == old_data.userName,
-                data.borrowed == old_data.borrowed,
-                data.returned == old_data.returned
-            )
-
-            if sum(check) == len(check):
+            if data == old_data:
                 return True
+
+            result = Session.updateBorrowHistory(data, old_data)
 
             if result[0] == True:
                 QMessageBox.information(self, "Update borrowing history", "Record updated successfully")
@@ -596,20 +586,8 @@ class MainWindow_UI(QMainWindow):
             self.BookEditForm_New(self.BookManagement_editBook, self.bookList[self.currentSelectBook])
 
     def BookManagement_editBook(self, data: BookData, old_data: Optional[BookData]) -> bool:
-        if old_data:
-            check = (
-                data.bookId == old_data.bookId,
-                data.image == old_data.image,
-                data.title == old_data.title,
-                data.author == old_data.author,
-                data.isbn10 == old_data.isbn10,
-                data.isbn13 == old_data.isbn13,
-                data.publication == old_data.publication,
-                data.description == old_data.description
-            )
-
-            if sum(check) == len(check):
-                return True
+        if data == old_data:
+            return True
 
         result = Session.updateBook(data, old_data)
 
@@ -791,19 +769,8 @@ class MainWindow_UI(QMainWindow):
             self.UserEditForm_New(self.UserManagement_editUser, self.userList[self.currentSelectUser])
 
     def UserManagement_editUser(self, data: UserData, old_data: Optional[UserData]) -> bool:
-        if old_data:
-            check = (
-                data.userId == old_data.userId,
-                data.prefixName == old_data.prefixName,
-                data.firstName == old_data.firstName,
-                data.lastName == old_data.lastName,
-                data.email == old_data.email,
-                data.phone == old_data.phone,
-                data.address == old_data.address
-            )
-
-            if sum(check) == len(check):
-                return True
+        if data == old_data:
+            return True
 
         result = Session.updateUser(data, old_data)
 
